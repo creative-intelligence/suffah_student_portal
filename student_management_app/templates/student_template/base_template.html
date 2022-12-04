@@ -130,33 +130,6 @@
           </p>
         </a>
       </div>
-      <div class="col-sm-3 ">
-        {% url 'student_apply_leave' as student_apply_leave %}
-        <a
-          href="{{ student_apply_leave }}"
-          class="d-flex nav-link {% if request.path == student_apply_leave %} active {% endif %}"
-        >
-          <i class="nav-icon fas fa-envelope-open-text mr-2 mt-1"></i>
-          <p>
-            Apply for Leave {% comment %}
-            <span class="right badge badge-danger">New</span> {% endcomment %}
-          </p>
-        </a>
-      </div>
-      <div class="col-sm-3">
-        {% url 'student_feedback' as student_feedback %}
-        <a
-          href="{{ student_feedback }}"
-          class="d-flex nav-link {% if request.path == student_feedback %} active {% endif %}"
-        >
-          <i class="nav-icon fas fa-comments mr-2 mt-1"></i>
-          <p>
-            Send Feedback {% comment %}
-            <span class="right badge badge-danger">New</span> {% endcomment %}
-          </p>
-        </a>
-      </div>
-
     </div>
   </div>
     <!-- /.navbar -->
