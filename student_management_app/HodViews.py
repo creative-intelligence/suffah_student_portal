@@ -362,13 +362,20 @@ def add_student_save(request):
 
             try:
                 
+                print(course_id)
                 user = CustomUser.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name, user_type=3)
                 
-                user.students.address = address
+                try:
+                    user.students.address = address
+                except Exception as e:
+                    print("At address: ", e);
                 
-                course_obj = Courses.objects.get(id=course_id)
-                user.students.course_id = course_obj
-                
+                try:
+                    course_obj = Courses.objects.get(id=course_id)
+                    user.students.course_id = course_obj
+                except Exception as e:
+                    print("At Course: ", e);
+                                
                 session_year_obj = SessionYearModel.objects.get(id=session_year_id)
                 user.students.session_year_id = session_year_obj
                 
