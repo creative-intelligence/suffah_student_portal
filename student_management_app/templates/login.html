@@ -3,15 +3,15 @@
 
 {% block content %}
 
-    <body class="hold-transition login-page">
+<body class="hold-transition login-page " style = "background-image: url('{% static 'images/study-group.jpg' %}'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{% url 'login' %}"><b>Student </b>Management System</a>
+    <a href="{% url 'login' %}" style="color: white !important;"><b>Suffah Islamic </b><br/> Student Management System</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to Student Management System</p>
+      <h2 class="login-box-msg">Sign In</h2>
 
       <form action="{% url 'doLogin' %}" method="POST">
       {% csrf_token %}
