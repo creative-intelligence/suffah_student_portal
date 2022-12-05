@@ -173,6 +173,7 @@ class ClassAssignments(models.Model):
     subject_id = models.ForeignKey(Subjects, on_delete=models.CASCADE)
     assignment_name = models.TextField()
     file_link = models.TextField()
+    file_name = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()

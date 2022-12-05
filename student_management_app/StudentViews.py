@@ -1,3 +1,7 @@
+import os
+from django.conf import settings
+from django.http import HttpResponse, Http404
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
@@ -5,7 +9,7 @@ from django.core.files.storage import FileSystemStorage #To upload Profile Pictu
 from django.urls import reverse
 import datetime # To Parse input DateTime into Python Date Time Object
 
-from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudent, StudentResult
+from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudent, StudentResult, ClassAssignments
 
 
 def student_home(request):
@@ -194,6 +198,25 @@ def student_view_result(request):
     }
     return render(request, "student_template/student_view_result.html", context)
 
+def student_view_assignment(request):
+    # student = Students.objects.get(admin=request.user.id)
+    # student_result = StudentResult.objects.filter(student_id=student.id)
+    assignments = ClassAssignments.objects.all()
+    context = {
+        "assignments": assignments,
+    }
+    return render(request, "student_template/student_view_assignment.html", context)
+
+def downloadAssignment(request, assignment_id):
+    print(assignment_id)
+    assignment = ClassAssignments.objects.get(id=assignment_id)
+    file_path = os.path.join(settings.MEDIA_ROOT, assignment.file_name)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/form-data")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
 
 
 

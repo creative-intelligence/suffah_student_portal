@@ -393,7 +393,7 @@ def staff_add_assignment_save(request):
         subject_obj = Subjects.objects.get(id=subject)
 
         try:
-            result = ClassAssignments(course_id=course_obj, subject_id=subject_obj, assignment_name=assignment_name, file_link=profile_pic_url)
+            result = ClassAssignments(course_id=course_obj, subject_id=subject_obj, assignment_name=assignment_name, file_link=profile_pic_url, file_name = filename)
             result.save()
             messages.success(request, "Assignment Added Successfully!")
             return redirect('staff_add_assignment')
