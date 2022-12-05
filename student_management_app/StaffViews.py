@@ -8,7 +8,7 @@ from django.core import serializers
 import json
 
 
-from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, SessionYearModel, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult, ClassAssignments, ClassResources
+from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, SessionYearModel, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult, ClassAssignments, ClassResources, NoticeBoard
 
 
 def staff_home(request):
@@ -451,3 +451,13 @@ def staff_add_resource_save(request):
             print(e)
             messages.error(request, "Failed to Add Resource!")
             return redirect('staff_add_resource')
+
+def staff_notice_board(request):
+    # student = Students.objects.get(admin=request.user.id)
+    # student_result = StudentResult.objects.filter(student_id=student.id)
+    notice_board = NoticeBoard.objects.all()
+    context = {
+        "notice_board": notice_board,
+    }
+    return render(request, "staff_template/staff_notice_board_template.html", context)
+

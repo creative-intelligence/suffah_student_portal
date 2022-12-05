@@ -133,7 +133,7 @@
         </div>
         <div class="col-sm-3 ">
           {% url 'staff_add_assignment' as staff_add_assignment %}
-          <a href="{{ staff_add_assignment }}" class="d-flex nav-link {% if request.path == staff_add_result %} active {% endif %}">
+          <a href="{{ staff_add_assignment }}" class="d-flex nav-link {% if request.path == staff_add_assignment %} active {% endif %}">
             <i class="nav-icon fas fa-tasks mr-2 mt-1"></i>
             <p>
               Add Assignment / Quiz
@@ -143,10 +143,20 @@
         </div>
         <div class="col-sm-3 ">
           {% url 'staff_add_resource' as staff_add_resource %}
-          <a href="{{ staff_add_resource }}" class="d-flex nav-link {% if request.path == staff_add_result %} active {% endif %}">
+          <a href="{{ staff_add_resource }}" class="d-flex nav-link {% if request.path == staff_add_resource %} active {% endif %}">
             <i class="nav-icon fas fa-tasks mr-2 mt-1"></i>
             <p>
               Add Resource
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </div>
+        <div class="col-sm-3 ">
+          {% url 'staff_notice_board' as staff_notice_board %}
+          <a href="{{ staff_notice_board }}" class="d-flex nav-link {% if request.path == staff_notice_board %} active {% endif %}">
+            <i class="nav-icon fas fa-tasks mr-2 mt-1"></i>
+            <p>
+              Notice Board
               {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
             </p>
           </a>
