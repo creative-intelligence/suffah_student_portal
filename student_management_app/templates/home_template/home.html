@@ -46,8 +46,8 @@
     <div class="header-top">
       <div class="header">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-3 col logo_section">
+          <div class="row w-100 d-flex justify-content-between">
+            <div class="logo_section">
               <div class="full">
                 <div class="center-desk">
                   <div class="logo">
@@ -56,24 +56,10 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-10 col-lg-8 col-md-8 col-sm-9">
-              <div class="header_information">
-               <div class="menu-area">
-                <div class="limit-box">
-                  <nav class="main-menu ">
-                    <ul class="menu-area-main">
-                      <li class="active"> <a href="index.html">Home</a> </li>
-                      <li> <a href="#courses">My Courses </a> </li>
-                      <li> <a href="#about">About</a> </li>
-                      <li> <a href="#learn">My Profile</a> </li>
-                      <li> <a href="#contact">Contact</a> </li>
-                     </ul>
-                   </nav>
-                 </div>
-               </div> 
-               <div class="mean-last">
-                       <a href="#"><img src="{% static "mind/images/search_icon.png" %}" alt="#" /></a> <a href="{% url 'login' %}">Sign In</a></div>              
-             </div>
+            <div class="">
+              <a href="{% url 'login' %}">
+                <button class="btn btn-warning">Sign in</button>
+              </a>
            </div>
          </div>
        </div>
@@ -173,9 +159,6 @@
 </section>
 </div>
 </header>
-
-
-
 <!-- about  -->
 <div id="about" class="about">
   <div class="container">
@@ -186,7 +169,7 @@
           <p> orem ipsum dolor sit amet, consectetur adipisicing elit. Quas voluptatem maiores eaque similique non distinctio voluptates perspiciatis omnis, repellendus ipsa aperiam, laudantium voluptatum nulla?.
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, assumenda, vo
           luptatum. Libero eligendi molestias iure error animi totam laudantium, aspernatur similique id eos at consectetur illo culpa,  </p>
-          <a href="Javascript:void(0)">Read more</a>
+          
         </div>
       </div>
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -300,9 +283,6 @@
                   </div>
                 </div>
               </div>
-
-
-
             </div>
           </div>
         </div>
@@ -313,174 +293,19 @@
             <h2>Our <strong class="yellow"> Courses</strong></h2>
           </div>
           <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-          <a href="Javascript:void(0)">Read more</a>
+          
         </div>
       </div> 
     </div>
   </div>
 </div>
 <!-- end Courses -->
-
-<!-- learn -->
-
-
-<div id="learn" class="learn">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="titlepage">
-          <h2>Learn <strong class="yellow">the Practical way</strong></h2>
-          <span>packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="learn_box">
-          <figure><img src="{% static "mind/images/img.jpg" %}" alt="img"/></figure>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- MAKE --> 
-<div class="make">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="titlepage">
-          <h2>Make Your <strong class="white_colo">Courses Standout</strong></h2>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
-        <div class="make_text">
-          <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-          </p>
-          <a href="Javascript:void(0)">Strat now</a>
-        </div>
-      </div>
-      <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
-        <div class="make_img">
-          <figure><img src="{% static "mind/images/make_img.jpg" %}"></figure>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end MAKE --> 
-<!-- end learn --> 
-
-
-<!-- contact -->
-<div id="contact" class="contact">
-  <div class="container-fluid padding_left2">
-    <div class="white_color">
-      <div class="row">
-
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-          <div id="map">
-          </div>
-
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-
-          <form class="contact_bg">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="titlepage">
-                  <h2>Contact <strong class="yellow">us</strong></h2>
-                </div>
-                <div class="col-md-12">
-                  <input class="contactus" placeholder="Your Name" type="text" name="Your Name">
-                </div>
-                <div class="col-md-12">
-                  <input class="contactus" placeholder="Your Email" type="text" name="Your Email">
-                </div>
-                <div class="col-md-12">
-                  <input class="contactus" placeholder="Your Phone" type="text" name="Your Phone">
-                </div>
-                <div class="col-md-12">
-                  <textarea class="textarea" placeholder="Message" type="text" name="Message"></textarea>
-                </div>
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                  <button class="send">Send</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- end contact -->
-
     <!--  footer -->
     <footr>
       <div class="footer ">
         <div class="container">
           <div class="row">
-            <div class="col-md-12 mt-5">
-              <h2>Newsletter</h2>
-              <span>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in  </span>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-              <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 ">
-                  <div class="address">
-                    <h3>Contact us </h3>
-                    <ul class="loca">
-                      <li>
-                        <a href="#"><img src="{% static "mind/icon/loc.png" %}" alt="#" /></a>London 145
-                        <br>United Kingdom </li>
-                        <li>
-                          <a href="#"><img src="{% static "mind/icon/email.png" %}" alt="#" /></a>demo@gmail.com </li>
-                          <li>
-                            <a href="#"><img src="{% static "mind/icon/call.png" %}" alt="#" /></a>+12586954775 </li>
-                          </ul>
-                          <ul class="social_link">
-                            <li><a href="#"><img src="{% static "mind/icon/fb.png" %}"></a></li>
-                            <li><a href="#"><img src="{% static "mind/icon/tw.png" %}"></a></li>
-                            <li><a href="#"><img src="{% static "mind/icon/lin(2).png" %}"></a></li>
-                            <li><a href="#"><img src="{% static "mind/icon/instagram.png" %}"></a></li>
-                          </ul>
 
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="address">
-                          <h3>Courses</h3>
-                          <ul class="Menu_footer">
-                            <li class="active"> <a href="#">Masters Degree</a> </li>
-                            <li><a href="#">Post GraduateU</a> </li>
-                            <li><a href="#">Ndergraduate</a> </li>
-                            <li><a href="#">Engineering</a> </li>
-                            <li><a href="#">Ph.D Degree</a> </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="address">
-                          <h3>Information</h3>
-                          <ul class="Links_footer">
-                            <li class="active"><a href="#">Campus Tour</a> </li>
-                            <li><a href="#">Student Lifes</a> </li>
-                            <li><a href="#">Cholarship</a> </li>
-                            <li><a href="#"> Admission</a> </li>
-                            <li><a href="#">Leadership</a> </li>
-                          </ul>
-                        </div>
-                      </div>
-
-                      <div class="col-lg-3 col-md-6 col-sm-6 ">
-                        <div class="address">
-                          <a href="index.html"> <img src="{% static "mind/images/logo1.jpg" %}" alt="logo"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
                 </div>
 
@@ -504,36 +329,6 @@
           <script src="{% static "mind/js/jquery.mCustomScrollbar.concat.min.js" %}"></script>
           <script src="{% static "mind/js/custom.js" %}"></script>
           <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-
-
-          <script>
-// This example adds a marker to indicate the position of Bondi Beach in Sydney,
-// Australia.
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 11,
-    center: {
-      lat: 40.645037,
-      lng: -73.880224
-    },
-  });
-
-  var image = 'images/maps-and-flags.png';
-  var beachMarker = new google.maps.Marker({
-    position: {
-      lat: 33.744827880123694,
-      lng: 72.7866556
-    },
-    map: map,
-    icon: image
-  });
-}
-</script>
-<!-- google map js -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
-<!-- end google map js -->
-
-
 
 </body>
 
