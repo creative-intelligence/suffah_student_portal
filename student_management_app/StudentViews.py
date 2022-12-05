@@ -9,7 +9,7 @@ from django.core.files.storage import FileSystemStorage #To upload Profile Pictu
 from django.urls import reverse
 import datetime # To Parse input DateTime into Python Date Time Object
 
-from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudent, StudentResult, ClassAssignments
+from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudent, StudentResult, ClassAssignments, ClassResources
 
 
 def student_home(request):
@@ -218,6 +218,24 @@ def downloadAssignment(request, assignment_id):
             return response
     raise Http404
 
+def student_view_resource(request):
+    # student = Students.objects.get(admin=request.user.id)
+    # student_result = StudentResult.objects.filter(student_id=student.id)
+    resources = ClassResources.objects.all()
+    context = {
+        "resources": resources,
+    }
+    return render(request, "student_template/student_view_resource.html", context)
 
+def downloadResource(request, resource_id):
+    print(resource_id)
+    resource = ClassResources.objects.get(id=resource_id)
+    file_path = os.path.join(settings.MEDIA_ROOT, resource.file_name)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/form-data")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
 
 

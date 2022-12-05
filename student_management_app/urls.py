@@ -81,6 +81,9 @@ urlpatterns = [
     path('staff_add_result_save/', StaffViews.staff_add_result_save, name="staff_add_result_save"),
     path('staff_add_assignment/', StaffViews.staff_add_assignment, name="staff_add_assignment"),
     path('staff_add_assignment_save/', StaffViews.staff_add_assignment_save, name="staff_add_assignment_save"),
+    path('staff_add_resource/', StaffViews.staff_add_resource, name="staff_add_resource"),
+    path('staff_add_resource_save/', StaffViews.staff_add_resource_save, name="staff_add_resource_save"),
+    
     # URSL for Student
     path('student_home/', StudentViews.student_home, name="student_home"),
     path('student_view_attendance/', StudentViews.student_view_attendance, name="student_view_attendance"),
@@ -94,4 +97,6 @@ urlpatterns = [
     path('student_view_result/', StudentViews.student_view_result, name="student_view_result"),
     path('student_view_assignment/', StudentViews.student_view_assignment, name="student_view_assignment"),
     path('downloadAssignment/<assignment_id>', StudentViews.downloadAssignment, name="downloadAssignment"),
+    path('student_view_resource/', StudentViews.student_view_resource, name="student_view_resource"),
+    path('downloadResource/<resource_id>', StudentViews.downloadResource, name="downloadResource"),
 ]

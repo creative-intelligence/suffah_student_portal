@@ -177,6 +177,16 @@ class ClassAssignments(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()
+class ClassResources(models.Model):
+    id = models.AutoField(primary_key=True)
+    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    subject_id = models.ForeignKey(Subjects, on_delete=models.CASCADE)
+    resource_name = models.TextField()
+    file_link = models.TextField()
+    file_name = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = models.Manager()
 
 
 #Creating Django Signals
