@@ -105,4 +105,5 @@ urlpatterns = [
     path('downloadAssignment/<assignment_id>', StudentViews.downloadAssignment, name="downloadAssignment"),
     path('student_view_resource/', StudentViews.student_view_resource, name="student_view_resource"),
     path('downloadResource/<resource_id>', StudentViews.downloadResource, name="downloadResource"),
+    path('student_notice_board/', StudentViews.student_notice_board, name="student_notice_board"),
 ]

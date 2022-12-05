@@ -9,7 +9,7 @@ from django.core.files.storage import FileSystemStorage #To upload Profile Pictu
 from django.urls import reverse
 import datetime # To Parse input DateTime into Python Date Time Object
 
-from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudent, StudentResult, ClassAssignments, ClassResources
+from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudent, StudentResult, ClassAssignments, ClassResources, NoticeBoard
 
 
 def student_home(request):
@@ -238,4 +238,12 @@ def downloadResource(request, resource_id):
             return response
     raise Http404
 
+def student_notice_board(request):
+    # student = Students.objects.get(admin=request.user.id)
+    # student_result = StudentResult.objects.filter(student_id=student.id)
+    notice_board = NoticeBoard.objects.all()
+    context = {
+        "notice_board": notice_board,
+    }
+    return render(request, "student_template/student_notice_board_template.html", context)
 

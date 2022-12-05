@@ -158,6 +158,20 @@
           </p>
         </a>
       </div>
+      <div class="col-sm-3">
+        {% url 'student_notice_board' as student_notice_board %}
+        <a
+          href="{{ student_notice_board }}"
+          class="d-flex nav-link {% if request.path == student_notice_board %} active {% endif %}"
+          
+        >
+          <i class="nav-icon fas fa-tasks mr-2 mt-1"></i>
+          <p>
+            Notice Board {% comment %}
+            <span class="right badge badge-danger">New</span> {% endcomment %}
+          </p>
+        </a>
+      </div>
     </div>
   </div>
     <!-- /.navbar -->
