@@ -59,6 +59,12 @@ urlpatterns = [
     path('admin_get_attendance_student/', HodViews.admin_get_attendance_student, name="admin_get_attendance_student"),
     path('admin_profile/', HodViews.admin_profile, name="admin_profile"),
     path('admin_profile_update/', HodViews.admin_profile_update, name="admin_profile_update"),
+    path('notice_board/', HodViews.notice_board, name="notice_board"),
+    path('add_notice_board/', HodViews.add_notice_board, name="add_notice_board"),
+    path('add_notice_board_save/', HodViews.add_notice_board_save, name="add_notice_board_save"),
+    path('edit_notice_board/<session_id>', HodViews.edit_notice_board, name="edit_notice_board"),
+    path('edit_notice_board_save/', HodViews.edit_notice_board_save, name="edit_notice_board_save"),
+    path('delete_notice_board/<session_id>/', HodViews.delete_notice_board, name="delete_notice_board"),
     
 
 

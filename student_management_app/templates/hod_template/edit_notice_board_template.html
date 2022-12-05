@@ -1,0 +1,81 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block page_title %}
+    Edit Notice
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content bg-dark">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary shadow border">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Notice</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'edit_notice_board_save' %}">
+                        {% csrf_token %}
+
+                        
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+
+                        <div class="card-body bg-dark">
+                            <div class="form-group">
+                                <label>Notice Name </label>
+                                <input type="text" class="form-control bg-dark" name="notice_name" placeholder="Add a new notice name" value="{{ notice_board.notice_name}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Notice Details</label>
+                                <input type="text" class="form-control bg-dark" name="notice_details" placeholder="Add Notice Details" value="{{ notice_board.notice_details}}">
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer bg-dark">
+                        <input type="hidden" name="notice_board_id" value="{{ notice_board.id }}" />
+                        <button type="submit" class="btn btn-primary">Update Notice</button>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}

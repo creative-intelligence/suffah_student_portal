@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import json
 
-from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, SessionYearModel, FeedBackStudent, FeedBackStaffs, LeaveReportStudent, LeaveReportStaff, Attendance, AttendanceReport
+from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, SessionYearModel, FeedBackStudent, FeedBackStaffs, LeaveReportStudent, LeaveReportStaff, Attendance, AttendanceReport, NoticeBoard
 from .forms import AddStudentForm, EditStudentForm
 
 
@@ -336,7 +336,6 @@ def add_student_save(request):
         return redirect('add_student')
     else:
         form = AddStudentForm(request.POST, request.FILES)
-
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
@@ -800,5 +799,72 @@ def staff_profile(request):
 def student_profile(requtest):
     pass
 
+def notice_board(request):
+    notice_board = NoticeBoard.objects.all()
+    context = {
+        "notice_board": notice_board
+    }
+    return render(request, "hod_template/notice_board_template.html", context)
 
 
+def add_notice_board(request):
+    return render(request, "hod_template/add_notice_board_template.html")
+
+
+def add_notice_board_save(request):
+    if request.method != "POST":
+        messages.error(request, "Invalid Method")
+        return redirect('add_course')
+    else:
+        notice_name = request.POST.get('notice_name')
+        notice_details = request.POST.get('notice_details')
+
+        try:
+            notice_board = NoticeBoard(notice_name=notice_name, notice_details=notice_details)
+            notice_board.save()
+            messages.success(request, "New Notice added Successfully!")
+            return redirect("add_notice_board")
+        except:
+            messages.error(request, "Failed to New Notice")
+            return redirect("add_notice_board")
+
+
+def edit_notice_board(request, session_id):
+    notice_board = NoticeBoard.objects.get(id=session_id)
+    context = {
+        "notice_board": notice_board
+    }
+    return render(request, "hod_template/edit_notice_board_template.html", context)
+
+
+def edit_notice_board_save(request):
+    if request.method != "POST":
+        messages.error(request, "Invalid Method!")
+        return redirect('manage_session')
+    else:
+        notice_board_id = request.POST.get('notice_board_id')
+        notice_name = request.POST.get('notice_name')
+        notice_details = request.POST.get('notice_details')
+
+        try:
+            notice_board = NoticeBoard.objects.get(id=notice_board_id)
+            notice_board.notice_name = notice_name
+            notice_board.notice_details = notice_details
+            notice_board.save()
+
+            messages.success(request, "Notice Updated Successfully.")
+            return redirect('/edit_notice_board/'+notice_board_id)
+        except:
+            messages.error(request, "Failed to Update Notice.")
+            return redirect('/edit_notice_board/'+notice_board_id)
+
+
+def delete_notice_board(request, session_id):
+    notice_board = NoticeBoard.objects.get(id=session_id)
+    try:
+        notice_board.delete()
+        messages.success(request, "Notice Deleted Successfully.")
+        return redirect('notice_board')
+    except:
+        messages.error(request, "Failed to Delete Notice.")
+        return redirect('notice_board')
