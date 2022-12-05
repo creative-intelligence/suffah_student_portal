@@ -362,7 +362,6 @@ def add_student_save(request):
 
             try:
                 
-                print(course_id)
                 user = CustomUser.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name, user_type=3)
                 
                 try:

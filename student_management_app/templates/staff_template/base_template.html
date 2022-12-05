@@ -131,6 +131,16 @@
             </p>
           </a>
         </div>
+        <div class="col-sm-3 ">
+          {% url 'staff_add_assignment' as staff_add_assignment %}
+          <a href="{{ staff_add_assignment }}" class="d-flex nav-link {% if request.path == staff_add_result %} active {% endif %}">
+            <i class="nav-icon fas fa-tasks mr-2 mt-1"></i>
+            <p>
+              Add Assignment / Quiz
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </div>
       </div>
     </div>
     <!-- /.navbar -->

@@ -8,7 +8,7 @@ from django.core import serializers
 import json
 
 
-from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, SessionYearModel, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult
+from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, SessionYearModel, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult, ClassAssignments
 
 
 def staff_home(request):
@@ -353,3 +353,52 @@ def staff_add_result_save(request):
         except:
             messages.error(request, "Failed to Add Result!")
             return redirect('staff_add_result')
+
+def staff_add_assignment(request):
+    subjects = Subjects.objects.filter(staff_id=request.user.id)
+    courses = Courses.objects.all()
+    session_years = SessionYearModel.objects.all()
+    context = {
+        "subjects": subjects,
+        "session_years": session_years,
+        "courses": courses,
+    }
+    return render(request, "staff_template/add_assignment_template.html", context)
+
+def staff_add_assignment_save(request):
+    if request.method != "POST":
+        messages.error(request, "Invalid Method")
+        return redirect('staff_add_assignment')
+    else:
+        course = request.POST.get('course')
+        subject = request.POST.get('subject')
+        session_year = request.POST.get('session_year')
+        assignment_name = request.POST.get('assignment_name')
+        
+        #Uploading File
+        if len(request.FILES) != 0:
+            profile_pic = request.FILES['file_link']
+            fs = FileSystemStorage()
+            filename = fs.save(profile_pic.name, profile_pic)
+            profile_pic_url = fs.url(filename)
+        else:
+            profile_pic_url = None
+        print(course)
+        print(subject)
+        print(session_year)
+        print(assignment_name)
+        print(profile_pic_url)
+
+        course_obj = Courses.objects.get(id=course)
+        subject_obj = Subjects.objects.get(id=subject)
+
+        try:
+            result = ClassAssignments(course_id=course_obj, subject_id=subject_obj, assignment_name=assignment_name, file_link=profile_pic_url)
+            result.save()
+            messages.success(request, "Assignment Added Successfully!")
+            return redirect('staff_add_assignment')
+                
+        except Exception as e:
+            print(e)
+            messages.error(request, "Failed to Add Assignment!")
+            return redirect('staff_add_assignment')
