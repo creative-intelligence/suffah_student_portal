@@ -494,7 +494,8 @@ def delete_student(request, student_id):
         student.delete()
         messages.success(request, "Student Deleted Successfully.")
         return redirect('manage_student')
-    except:
+    except Exception as e:
+        print(e)
         messages.error(request, "Failed to Delete Student.")
         return redirect('manage_student')
 
