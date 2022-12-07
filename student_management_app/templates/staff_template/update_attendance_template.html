@@ -74,7 +74,7 @@
                             <button type="button" class="btn btn-primary" id="fetch_attendance">Fetch Attendance Date</button>
                         </div>
 
-                        <div class="card-footer">
+                        <div class="card-footer bg-dark">
                             <div class="form-group" id="attendance_block" style="display:none;">
                                     <label>Attendance Date </label>
                                     <select class="form-control" name="attendance_date" id="attendance_date">
@@ -93,20 +93,22 @@
                                 </div>
                             </div>
 
-                            <div class="card-footer" id="fetch_student_block" style="display:none;">
+                            <div class="card-footer bg-dark" id="fetch_student_block" style="display:none;">
 
                                 <button type="button" class="btn btn-primary" id="fetch_student">Fetch Student Data</button>
                             </div>
                             
                             <!-- /.card-body -->
 
-                            {% comment %} <div class="card-footer">
+                            {% comment %} <div class="card-footer bg-dark">
                                 <button type="button" class="btn btn-primary" id="save_student">Save Data</button>
                             </div> {% endcomment %}
 
                         </div>
 
                         {% comment %} Displaying Students Here {% endcomment %}
+                        <div class="card-footer bg-dark shadow border" id="student_data">
+                        </div> 
 
                     </div>
                     <!-- /.card -->
