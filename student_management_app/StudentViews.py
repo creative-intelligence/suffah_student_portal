@@ -199,9 +199,9 @@ def student_view_result(request):
     return render(request, "student_template/student_view_result.html", context)
 
 def student_view_assignment(request):
-    # student = Students.objects.get(admin=request.user.id)
-    # student_result = StudentResult.objects.filter(student_id=student.id)
-    assignments = ClassAssignments.objects.all()
+    student = Students.objects.get(admin=request.user.id)
+    # course = Courses.objects.get(id=student.course_id)
+    assignments = ClassAssignments.objects.filter(course_id = student.course_id)
     context = {
         "assignments": assignments,
     }
