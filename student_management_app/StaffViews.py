@@ -1,3 +1,7 @@
+import os
+from django.conf import settings
+from django.http import HttpResponse, Http404
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib import messages
@@ -8,7 +12,7 @@ from django.core import serializers
 import json
 
 
-from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, SessionYearModel, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult, ClassAssignments, ClassResources, NoticeBoard
+from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, SessionYearModel, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult, ClassAssignments, ClassResources, NoticeBoard, ClasStudentAssignmentsUpload
 
 
 def staff_home(request):
@@ -354,17 +358,38 @@ def staff_add_result_save(request):
             messages.error(request, "Failed to Add Result!")
             return redirect('staff_add_result')
 
+def staff_view_all_assignments(request):
+    staff = Staffs.objects.get(admin=request.user.id)
+    subject = Subjects.objects.get(staff_id=request.user.id)
+    assignments = ClasStudentAssignmentsUpload.objects.filter(course_id = subject.course_id)
+    # student = CustomUser.objects.filter(id = assignments.student_id.admin_id)
+    # print(student.first_name)
+    context = {
+        "assignments": assignments,
+    }
+    return render(request, "staff_template/staff_view_all_assignments_template.html", context)
+
 def staff_add_assignment(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)
     courses = Courses.objects.all()
     session_years = SessionYearModel.objects.all()
     context = {
-        "subjects": subjects,
+        "subjects": subjects,   
         "session_years": session_years,
         "courses": courses,
     }
     return render(request, "staff_template/add_assignment_template.html", context)
 
+def staffDownloadAssignment(request, assignment_id):
+    print(assignment_id)
+    assignment = ClasStudentAssignmentsUpload.objects.get(id=assignment_id)
+    file_path = os.path.join(settings.MEDIA_ROOT, assignment.file_name)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/form-data")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
 def staff_add_assignment_save(request):
     if request.method != "POST":
         messages.error(request, "Invalid Method")

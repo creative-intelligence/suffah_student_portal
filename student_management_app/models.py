@@ -177,6 +177,16 @@ class ClassAssignments(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()
+class ClasStudentAssignmentsUpload(models.Model):
+    id = models.AutoField(primary_key=True)
+    student_id = models.ForeignKey(Students, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    assignment_name = models.TextField()
+    file_link = models.TextField()
+    file_name = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = models.Manager()
 class ClassResources(models.Model):
     id = models.AutoField(primary_key=True)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)

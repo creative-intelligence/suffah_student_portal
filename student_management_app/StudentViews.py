@@ -9,7 +9,7 @@ from django.core.files.storage import FileSystemStorage #To upload Profile Pictu
 from django.urls import reverse
 import datetime # To Parse input DateTime into Python Date Time Object
 
-from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudent, StudentResult, ClassAssignments, ClassResources, NoticeBoard
+from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudent, StudentResult, ClassAssignments, ClassResources, NoticeBoard, ClasStudentAssignmentsUpload
 
 
 def student_home(request):
@@ -237,6 +237,40 @@ def downloadResource(request, resource_id):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     raise Http404
+
+def student_upload_assignment(request, assignment_id):
+    if request.method != "POST":
+        messages.error(request, "Invalid Method")
+        return redirect('staff_add_assignment')
+    else:
+        student = Students.objects.get(admin=request.user.id)
+        assignments = ClassAssignments.objects.get(id = assignment_id)
+        print(" 1", student.course_id);
+        course_obj = Courses.objects.get(id=student.course_id.id)
+        
+        #Uploading File
+        profile_pic_url = None
+        filename = None
+        if len(request.FILES) != 0:
+            profile_pic = request.FILES['file_link']
+            print("hbjk", profile_pic)
+            fs = FileSystemStorage()
+            filename = fs.save(profile_pic.name, profile_pic)
+            profile_pic_url = fs.url(filename)
+        else:
+            profile_pic_url = None
+
+        try:
+            result = ClasStudentAssignmentsUpload(student_id = student, course_id=course_obj, assignment_name=assignments.assignment_name, file_link=profile_pic_url, file_name = filename)
+            result.save()
+            messages.success(request, "Assignment Added Successfully!")
+            return redirect('student_view_assignment')
+                
+        except Exception as e:
+            print(e)
+            messages.error(request, "Failed to Add Assignment!")
+            return redirect('student_view_assignment')
+
 
 def student_notice_board(request):
     # student = Students.objects.get(admin=request.user.id)

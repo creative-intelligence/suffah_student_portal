@@ -39,11 +39,21 @@
                                         <td>{{ row.assignment_name }}</td>
                                         <td>{{ row.subject_id.subject_name }}</td>
                                         <td>{{ row.course_id.course_name }}</td>
-                                        <td>
-                                            <a href="{% url 'downloadAssignment' assignment_id=row.id %}" class="btn btn-primary" target="_blank" rel="noopener">
+                                        <td class="d-flex  align-items-center" style="height: 5rem;">
+                                            <a href="{% url 'downloadAssignment' assignment_id=row.id %}" class="btn btn-success" target="_blank" rel="noopener" style="height: 2.5rem; margin-top: -1rem;">
                                                 Download
                                             </a>
-                                            <button class="btn btn-success">Upload</button>
+                                            
+                                            <form method="POST" action="{% url 'student_upload_assignment' assignment_id=row.id %}" class="w-50" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <div class="card-body">
+                                                    <div class="form-group d-flex">
+                                                        <input type="file" name="file_link" class="form-control" />
+                                                        <button class="btn btn-primary" type="submit">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            
                                         </td>
                                     </tr>
                                     {% endfor %}
