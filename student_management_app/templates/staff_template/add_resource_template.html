@@ -16,7 +16,7 @@
                     <!-- general form elements -->
                     <form method="POST" action="{% url 'staff_add_resource_save' %}" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="card card-primary">
+                    <div class="card card-primary shadow border">
                     <div class="card-header">
                         <h3 class="card-title">Add Resource for a specific subject</h3>
                     </div>
@@ -48,11 +48,11 @@
                                 {% endif %}
                             
 
-                        <div class="card-body">
+                        <div class="card-body bg-dark">
 
                             <div class="form-group">
                                 <label>Class </label>
-                                <select class="form-control" name="course" id="course">
+                                <select class="form-control bg-dark" name="course" id="course">
                                     {% for course in courses %}
                                         <option value="{{ course.id }}">{{ course.course_name }}</option>
                                     {% endfor %}
@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Subject </label>
-                                <select class="form-control" name="subject" id="subject">
+                                <select class="form-control bg-dark" name="subject" id="subject">
                                     {% for subject in subjects %}
                                         <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
                                     {% endfor %}
@@ -68,7 +68,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Session Year </label>
-                                <select class="form-control" name="session_year" id="session_year">
+                                <select class="form-control bg-dark" name="session_year" id="session_year">
                                     {% for session_year in session_years %}
                                         <option value="{{ session_year.id }}">{{ session_year.session_start_year }} to {{ session_year.session_end_year }}</option>
                                     {% endfor %}
@@ -76,24 +76,21 @@
                             </div>
                             <div class="form-group">
                                 <label>Assignment Name</label>
-                                <input type="text" class="form-control" name="resource_name" placeholder="Resouce Name">
+                                <input type="text" class="form-control bg-dark" name="resource_name" placeholder="Resouce Name">
                             </div>
                             <div class="form-group">
                                 <label>Select File</label>
-                                <input type="file" class="form-control" name="file_link" placeholder="File">
+                                <input type="file" class="form-control bg-dark" name="file_link" placeholder="File">
                             </div>
 
                         </div>
                         <!-- /.card-body -->
 
-                        <div class="card-footer">
+                        <div class="card-footer bg-dark">
                         <button type="submit" class="btn btn-primary" id="fetch_student">Upload Resource</button>
                         </div>
 
                         {% comment %} Displaying Students Here {% endcomment %}
-
-                        <div class="card-footer" id="student_data">
-                        </div> 
 
                     </div>
                     </form>

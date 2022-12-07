@@ -8,7 +8,7 @@
 
 {% load static %}
 
-<section class="content">
+<section class="content ">
         <div class="container-fluid">
 
             <div class="row">
@@ -16,7 +16,7 @@
                     <!-- general form elements -->
                     <form method="POST" action="{% url 'staff_add_result_save' %}">
                     {% csrf_token %}
-                    <div class="card card-primary">
+                    <div class="card card-primary border shadow">
                     <div class="card-header">
                         <h3 class="card-title">Add Result</h3>
                     </div>
@@ -48,11 +48,11 @@
                                 {% endif %}
                             
 
-                        <div class="card-body">
+                        <div class="card-body bg-dark">
                            
                             <div class="form-group">
                                 <label>Subject </label>
-                                <select class="form-control" name="subject" id="subject">
+                                <select class="form-control bg-dark" name="subject" id="subject">
                                     {% for subject in subjects %}
                                         <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
                                     {% endfor %}
@@ -61,7 +61,7 @@
 
                             <div class="form-group">
                                 <label>Session Year </label>
-                                <select class="form-control" name="session_year" id="session_year">
+                                <select class="form-control bg-dark" name="session_year" id="session_year">
                                     {% for session_year in session_years %}
                                         <option value="{{ session_year.id }}">{{ session_year.session_start_year }} to {{ session_year.session_end_year }}</option>
                                     {% endfor %}
@@ -72,14 +72,11 @@
                         </div>
                         <!-- /.card-body -->
 
-                        <div class="card-footer">
+                        <div class="card-footer bg-dark">
                         <button type="button" class="btn btn-primary" id="fetch_student">Fetch Student</button>
                         </div>
 
                         {% comment %} Displaying Students Here {% endcomment %}
-
-                        <div class="card-footer" id="student_data">
-                        </div> 
 
                     </div>
                     </form>
