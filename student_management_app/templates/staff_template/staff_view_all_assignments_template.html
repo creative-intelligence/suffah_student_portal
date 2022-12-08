@@ -32,7 +32,8 @@
                                     </tr>
                                     </thead>
                                     
-                                    {% for row in assignments %}
+                                    {% for r in assignments %}
+                                    {% for row in r %}
                                     <tr>
                                         <td>{{ row.id }}</td>
                                         <td>{{ row.student_id.admin_id }}</td>
@@ -45,6 +46,7 @@
                                             </a>    
                                         </td>
                                     </tr>
+                                    {% endfor %}
                                     {% endfor %}
                                 </table>
                             </div>

@@ -359,12 +359,21 @@ def staff_add_result_save(request):
 
 def staff_view_all_assignments(request):
     staff = Staffs.objects.get(admin=request.user.id)
-    subject = Subjects.objects.get(staff_id=request.user.id)
-    assignments = ClasStudentAssignmentsUpload.objects.filter(course_id = subject.course_id)
-    # student = CustomUser.objects.filter(id = assignments.student_id.admin_id)
+    subject = Subjects.objects.filter(staff_id=request.user.id)
+    tempList = []
+    studentsList = []
+    for s in subject:
+        assignments = ClasStudentAssignmentsUpload.objects.filter(course_id = s.course_id)
+        for a in assignments:
+            student = Students.objects.get(id=a.student_id.id)
+            student_details = CustomUser.objects.get(id = student.admin_id)
+            studentsList.append(student_details)
+        tempList.append(assignments)
     # print(student.first_name)
+    print(tempList)
     context = {
-        "assignments": assignments,
+        "assignments": tempList,
+        "students": studentsList,
     }
     return render(request, "staff_template/staff_view_all_assignments_template.html", context)
 
