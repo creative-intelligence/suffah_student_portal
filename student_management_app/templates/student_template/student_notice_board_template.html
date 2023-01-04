@@ -1,47 +1,38 @@
-{% extends 'student_template/base_template.html' %}
-
-{% block page_title %}
-    Notice Board
-{% endblock page_title %}
-
-{% block main_content %}
-
-{% load static %}
+{% extends 'student_template/base_template.html' %} {% block page_title %}
+Notice Board {% endblock page_title %} {% block main_content %} {% load static
+%}
 
 <section class="content">
-        <div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card border shadow">
+          <div class="card-header bg-success">
+            <h3 class="card-title">Notice Board</h3>
+          </div>
 
-            
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card border shadow">
-                        <div class="card-header bg-success">
-                            <h3 class="card-title">Notice Board</h3>
-                        </div>
-
-                        <div class="card-body bg-dark">
-                           <div class="table-responsive">
-                            {% for row in notice_board %}
-                            <div class="card card border bg-dark">
-                                <div class="card-header border-bottom bg-primary">
-                                    <h3 class="card-title">{{row.notice_name}}</h3>
-                                </div>
-        
-                                <div class="card-body">
-                                   <div class="table-responsive">
-                                        <p>{{row.notice_details}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            </div>
-                        </div>
-                    </div>
+          <div class="card-body bg-light">
+            <div class="table-responsive">
+              {% for row in notice_board %}
+              <div class="card card border bg-light">
+                <div class="card-header border-bottom bg-primary">
+                  <h3 class="card-title">{{row.notice_name}}</h3>
                 </div>
+
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <p>{{row.notice_details}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
 
-        </div><!-- /.container-fluid -->
-      </section>
-
-  {% endblock main_content %}
+{% endblock main_content %}

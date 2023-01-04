@@ -33,14 +33,14 @@
 
     {% block custom_css %}
     {% endblock custom_css %}
-
+ 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed bg-dark">
+<body class="hold-transition sidebar-mini layout-fixed" style = "background-image: url('{% static 'images/image.png' %}'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
   <div class="wrapper">
 
   <!-- Navbar -->
-    <nav class="header navbar navbar-expand navbar-dark navbar-light border">
+    <nav class="header navbar navbar-expand navbar-light border shadow" style = "background-color: #007bff;">
       <!-- Brand Logo -->
       <a href="{% url 'student_home' %}" class="brand-link">
         <img
@@ -49,7 +49,7 @@
           class="brand-image img-circle elevation-3"
           style="opacity: 0.8"
         />
-        <h4 class="brand-text">Suffah School Sytem</h4>
+        <h4 class="brand-text text-white">Suffah School Sytem</h4>
       </a>
 
       <ul class="navbar-nav ml-auto f-flex justify-content-center align-items-center">
@@ -62,7 +62,7 @@
             />
           </div>
           <div class="info">
-            <a href="{% url 'student_profile' %}" class="d-block"
+            <a href="{% url 'student_profile' %}" class="d-block text-white"
               >{{ user.first_name }}</a
             >
           </div>
@@ -89,7 +89,7 @@
     </ul>
 
     </nav>
-    <div class="container bg-dark border rounded my-3 pt-3">
+    <div class="container border rounded shadow my-3 pt-3 bg-light">
       <div class="row">
         <div class="col-sm-3">
           {% url 'staff_home' as staff_home %}
@@ -165,7 +165,7 @@
     </div>
     <!-- /.navbar -->
     <!-- Content Wrapper. Contains page content -->
-    <div class="container bg-dark shadow border">
+    <div class="container shadow border rounded bg-light">
 
     <!-- Content Header (Page header) -->
       <div class="content-header">

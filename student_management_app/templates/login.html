@@ -3,10 +3,18 @@
 
 {% block content %}
 
-<body class="hold-transition login-page " style = "background-image: url('{% static 'images/study-group.jpg' %}'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+<body class="hold-transition login-page " style = "background-color: white;">
 <div class="login-box">
-  <div class="login-logo">
-    <a href="{% url 'login' %}"><b>Suffah Islamic </b><br/> Student Management System</a>
+  <div class="d-flex flex-column align-items-center">
+    <image
+    src="{% static 'images/logo.jpg' %}"
+    alt="Suffah Islamic Logo"
+    height = "150"
+    width = "150"
+    />
+    <div class="login-logo">
+      <a href="{% url 'login' %}"><b>Suffah Islamic </b><br/> Student Management System</a>
+    </div>
   </div>
   <!-- /.login-logo -->
   <div class="card">
